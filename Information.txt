@@ -1,0 +1,24 @@
+Что делает этот контроллер
+№	Метод						Описание	
+1	GET /api/reports/orders-by-product		Кол-во заказов по каждому товару	
+2	GET /api/reports/shipped-to-stores		Отгрузки по магазинам	
+3	GET /api/reports/stock				Остатки на складе	
+4	GET /api/reports/stores-by-product/5		Магазины, заказавшие товар 5	
+5	GET /api/reports/store-info-by-product/5	Полная информация о магазинах	
+6	GET /api/reports/needed-restock			Что нужно срочно закупить	
+7	GET /api/reports/invoice-details/3		Состав накладной №3	
+8	GET /api/reports/order-details/2		Состав заказа №2	
+9	GET /api/reports/orders-by-store/1		Все заказы магазина №1	
+10	GET /api/reports/unsold-products		Товары без спроса в этом месяце	
+
+Теперь можно задавать ограничения доступа прямо в коде:
+    [ApiController]
+    [Route("api/[controller]")]
+    [Authorize(Role = "Admin")] 
+А для, скажем, заказов — можно открыть доступ менеджеру:
+	[Authorize(Role = "Manager")]
+	[ApiController]
+	[Route("api/[controller]")]
+Если хочешь разрешить любому авторизованному пользователю (без проверки роли),
+просто укажи без параметра:
+	[Authorize]
